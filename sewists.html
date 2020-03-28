@@ -62,48 +62,38 @@
           </section>
           <!-- VUE Instance -->
           <div id="app">
-            <div class="table-responsive">
-              <table class="table table-sm">
-                <thead>
-                  <tr>
-                    <!-- <th scope="col">Date</th> -->
-                    <th scope="col">Qty Needed</th>
-                    <th scope="col">Health Center</th>
-                    <th scope="col">Delivery Address</th>
-                    <th scope="col">Design Preference</th>
-                    <th scope="col">Contact</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="request in requests" key="request.rowNumber">
-                    <!-- <td>{{request.timestamp}}</td> -->
-                    <td>{{request.quantityneeded}}</td>
-                    <td>{{request.healthcenter}}</td>
-                    <td>{{request.deliveryaddress}}</td>
-                    <td>{{request.designpreference}}</td>
-                    <td>
-                      {{request.fullname}}<br />
-                      <span v-if="request.phonenumber != 'email contact only'"
-                        >{{request.phonenumber}}<br
-                      /></span>
-                      {{request.email}}
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+            <div
+              class="card mb-2"
+              v-for="request in requests"
+              key="request.rowNumber"
+            >
+              <div class="card-body">
+                <h5 class="card-subtitle mb-2">{{request.healthcenter}}</h5>
+                <h6 class="card-subtitle mb-3 text-muted">
+                  {{request.deliveryaddress}}
+                </h6>
+                <p
+                  class="card-text"
+                  v-if="request.quantityneeded = 'as many as possible'"
+                >
+                  <strong>As Many Masks as Possible</strong><br />Design
+                  Preference: {{request.designpreference}}
+                </p>
+                <p v-else>
+                  <strong>{{request.quantityneeded}} Masks Needed</strong
+                  ><br />Design Preference: {{request.designpreference}}
+                </p>
+                <p class="card-text"></p>
+                <p class="card-text">
+                  <strong>Contact</strong><br />
+                  {{request.fullname}}<br />
+                  <span v-if="request.phonenumber != 'email contact only'"
+                    >{{request.phonenumber}}<br
+                  /></span>
+                  {{request.email}}
+                </p>
+              </div>
             </div>
-            <!-- TODO: Style this better -->
-            <!-- <ul>
-              <li v-for="request in requests" key="request.rowNumber">
-                {{request.timestamp}}<br />
-                {{request.healthcenter}}<br />
-                {{request.deliveryaddress}}<br />
-                {{request.designpreference}}<br />
-                {{request.fullname}}<br />
-                {{request.phonenumber}}<br />
-                {{request.email}}<br />
-              </li>
-            </ul> -->
           </div>
           <!-- <iframe
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQne2N2naVUQr2wkgAHEjVv6RVHYKk1bn4X8wopegcZI4o14lX-OHtji2fz3Hhr6e-OVhF7WgwUT9F3/pubhtml?gid=1802942219&amp;single=true&amp;widget=true&amp;headers=false"

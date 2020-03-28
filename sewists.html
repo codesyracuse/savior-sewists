@@ -1,93 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
 
-<head>
+    <title>The Syracuse Mask Project</title>
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 
-  <title>Savior Sewists</title>
+    <!-- Custom styles for this template -->
+    <link href="css/simple-sidebar.css" rel="stylesheet" />
+  </head>
 
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="css/simple-sidebar.css" rel="stylesheet">
-
-</head>
-
-<body>
-
-  <div class="d-flex" id="wrapper">
-
-    <!-- Sidebar -->
-    <div class="bg-light border-right" id="sidebar-wrapper">
-      <div class="sidebar-heading"> <a href="/">Savior Sewists</a>  </div>
-      <div class="list-group list-group-flush">
-        <a href="/health-centers.html" class="list-group-item list-group-item-action bg-light">For Health Centers</a>
-        <a href="/sewists.html" class="list-group-item list-group-item-action bg-light">For Sewists</a>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">
+          <a href="/">The Syracuse Mask Project</a>
+        </div>
+        <div class="list-group list-group-flush">
+          <a
+            href="/health-centers.html"
+            class="list-group-item list-group-item-action bg-light"
+            >For Health Centers</a
+          >
+          <a
+            href="/sewists.html"
+            class="list-group-item list-group-item-action bg-light"
+            >For Sewists</a
+          >
+        </div>
       </div>
-    </div>
-    <!-- /#sidebar-wrapper -->
+      <!-- /#sidebar-wrapper -->
 
-    <!-- Page Content -->
-    <div id="page-content-wrapper">
-
-      <div class="container-fluid">
-        <h1 class="mt-1">Sewists</h1>
-        <h2 class="mt-6">Your talent can support Syracuse doctors, nurses, and health workers.</h2>
-        <hr>
-        <section>
-          <h3>Review Requests</h3>
-          <p>The following health centers and laboratories have requested masks.</p>
-          <p>For information about making masks go to <a href="http://www.nancysews.com">www.nancysews.com</a>.</p>
-        </section>
-        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQne2N2naVUQr2wkgAHEjVv6RVHYKk1bn4X8wopegcZI4o14lX-OHtji2fz3Hhr6e-OVhF7WgwUT9F3/pubhtml?gid=1802942219&amp;single=true&amp;widget=true&amp;headers=false" width="100%" height="400"></iframe>
-        <hr>  
-        <section>
-          <h3>Begin Fulfilling Orders</h3>
-          <p>Look at the table above for an order that you can help fill.  Health centers and laboratories are requested to place a labeled container outside their facility to accept donated masks.  Once the request is filled, the Health Center will pull their request, remove the container, and pass along any extra masks to another health center or laboratory in need.</p>
-          <p>If you have any questions or need help, e-mail <a href="mailto:nggaus123@gmail.com">Nancy Gaus</a>.</p>
-        </section>
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <h1 class="mt-1">Sewists</h1>
+          <h2 class="mt-6">
+            Your talent can support Syracuse doctors, nurses, and health
+            workers.
+          </h2>
+          <hr />
+          <section>
+            <h3>Review Requests</h3>
+            <p>
+              The following health centers and laboratories have requested
+              masks.
+            </p>
+            <p>
+              For information about making masks go to
+              <a href="http://www.nancysews.com">www.nancysews.com</a>.
+            </p>
+          </section>
+          <!-- VUE Instance -->
+          <div id="app">
+            <div class="table-responsive">
+              <table class="table table-sm">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col">Date</th> -->
+                    <th scope="col">Qty Needed</th>
+                    <th scope="col">Health Center</th>
+                    <th scope="col">Delivery Address</th>
+                    <th scope="col">Design Preference</th>
+                    <th scope="col">Contact</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="request in requests" key="request.rowNumber">
+                    <!-- <td>{{request.timestamp}}</td> -->
+                    <td>{{request.quantityneeded}}</td>
+                    <td>{{request.healthcenter}}</td>
+                    <td>{{request.deliveryaddress}}</td>
+                    <td>{{request.designpreference}}</td>
+                    <td>
+                      {{request.fullname}}<br />
+                      <span v-if="request.phonenumber != 'email contact only'"
+                        >{{request.phonenumber}}<br
+                      /></span>
+                      {{request.email}}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- TODO: Style this better -->
+            <!-- <ul>
+              <li v-for="request in requests" key="request.rowNumber">
+                {{request.timestamp}}<br />
+                {{request.healthcenter}}<br />
+                {{request.deliveryaddress}}<br />
+                {{request.designpreference}}<br />
+                {{request.fullname}}<br />
+                {{request.phonenumber}}<br />
+                {{request.email}}<br />
+              </li>
+            </ul> -->
+          </div>
+          <!-- <iframe
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQne2N2naVUQr2wkgAHEjVv6RVHYKk1bn4X8wopegcZI4o14lX-OHtji2fz3Hhr6e-OVhF7WgwUT9F3/pubhtml?gid=1802942219&amp;single=true&amp;widget=true&amp;headers=false"
+            width="100%"
+            height="400"
+          ></iframe> -->
+          <hr />
+          <section>
+            <h3>Begin Fulfilling Orders</h3>
+            <p>
+              Look at the table above for an order that you can help fill.
+              Health centers and laboratories are requested to place a labeled
+              container outside their facility to accept donated masks. Once the
+              request is filled, the Health Center will pull their request,
+              remove the container, and pass along any extra masks to another
+              health center or laboratory in need.
+            </p>
+            <p>
+              If you have any questions or need help, e-mail
+              <a href="mailto:nggaus123@gmail.com">Nancy Gaus</a>.
+            </p>
+          </section>
+        </div>
       </div>
+      <!-- /#page-content-wrapper -->
     </div>
-    <!-- /#page-content-wrapper -->
+    <!-- /#wrapper -->
 
-  </div>
-  <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+      $('#menu-toggle').click(function(e) {
+        e.preventDefault();
+        $('#wrapper').toggleClass('toggled');
+      });
+    </script>
 
-  <!-- Menu Toggle Script -->
-  <script>
-    $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-  </script>
+    <!-- Tabletop.js for parsing google sheets data https://github.com/jsoma/tabletop-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js"></script>
 
-  <!-- Tabletop.js for parsing google sheets data -->
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.5.1/tabletop.min.js'></script>
-  <script type='text/javascript'>
-    var publicSpreadsheetUrl = 'https://docs.google.com/spreadsheets/d/1sbyMINQHPsJctjAtMW0lCfLrcpMqoGMOJj6AN-sNQrc/pubhtml';
-  
-    function init() {
-      Tabletop.init( { key: publicSpreadsheetUrl,
-                       callback: showInfo,
-                       simpleSheet: true } )
-    }
-  
-    function showInfo(data, tabletop) {
-      console.log(data);
-    }
-  
-    window.addEventListener('DOMContentLoaded', init)
-  </script>
+    <!-- Vue for reactivity and parsing data -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
-</body>
-
+    <!-- Main Scripts -->
+    <script src="js/sewists.js"></script>
+  </body>
 </html>

@@ -16,6 +16,51 @@
 
     <!-- Custom styles for this template -->
     <link href="css/simple-sidebar.css" rel="stylesheet" />
+
+    <style>
+      /* NOTE: I apologize for the styles below, especially for reusing / altering all the boostrap
+         classes like I did. It was done quickly and a more robust system would be desired. */
+
+      h1, h2, section {
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+
+      h1 {
+        padding-top: 24px;
+      }
+
+      .container-fluid {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      #app {
+        flex-grow: 1;
+        background-color: #f8f9fa;
+        padding-left: 24px;
+        padding-right: 0px;
+        padding-top: 24px;
+        border-top: 1px solid #dee2e6;
+
+        overflow-y: auto;
+      }
+
+      .well {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .card {
+        width: 320px;
+        flex-grow: 1;
+        flex-shrink: 1;
+        margin-right: 24px;
+        /* this !important is required to override some default bootstrap style... */
+        margin-bottom: 24px !important;
+      }
+    </style>
   </head>
 
   <body>
@@ -42,14 +87,11 @@
 
       <!-- Page Content -->
       <div id="page-content-wrapper">
-        <div class="container-fluid">
-          <h1 class="mt-1">Sewists</h1>
-          <h2 class="mt-6">
-            Your talent can support Syracuse doctors, nurses, and health
-            workers.
-          </h2>
-          <hr />
-          <section>
+        <div class="container-fluid" style="padding-left: 0px; padding-right: 0px;">
+          <h1 class="mt-1 h2">
+            Sewists: Your talent can support Syracuse doctors, nurses, and health workers.
+          </h1>
+          <section class="mt-4">
             <h3>Begin Fulfilling Orders</h3>
             <p>
               Look at the list below for an order that you can help fill. Health
@@ -64,7 +106,8 @@
               <a href="mailto:nggaus123@gmail.com">Nancy Gaus</a>.
             </p>
           </section>
-          <section>
+
+          <section class="mt-4">
             <h4>Review Requests</h4>
             <p>
               The following health centers and laboratories have requested
@@ -73,39 +116,45 @@
               <a href="http://www.nancysews.com">www.nancysews.com</a>.
             </p>
           </section>
+
           <!-- VUE Instance -->
           <div id="app">
-            <div
-              class="card mb-2"
-              v-for="request in requests"
-              key="request.rowNumber"
-            >
-              <div class="card-body">
-                <h5 class="card-subtitle mb-3">{{request.healthcenter}}</h5>
-                <h6 class="card-subtitle mb-3 text-muted">
-                  <strong>Drop Off Location:</strong><br />
-                  {{request.deliveryaddress}}
-                </h6>
-                <p
-                  class="card-text"
-                  v-if="request.quantityneeded == 'as many as possible'"
-                >
-                  <strong>As Many Masks as Possible</strong><br />Design
-                  Preference: {{request.designpreference}}
-                </p>
-                <p v-else>
-                  <strong>{{request.quantityneeded}} Masks Needed</strong
-                  ><br />Design Preference: {{request.designpreference}}
-                </p>
-                <p class="card-text"></p>
-                <p class="card-text">
-                  <strong>Contact</strong><br />
-                  {{request.fullname}}<br />
-                  <span v-if="request.phonenumber != 'email contact only'"
-                    >{{request.phonenumber}}<br
-                  /></span>
-                  {{request.email}}
-                </p>
+            <div class="well">
+              <div
+                class="card mb-2"
+                v-for="request in requests"
+                key="request.rowNumber"
+              >
+                <div class="card-body">
+                  <h5 class="card-subtitle mb-3">{{request.healthcenter}}</h5>
+                  <h6 class="card-subtitle mb-3 text-muted">
+                    <strong>Drop Off Location:</strong><br />
+                    {{request.deliveryaddress}}
+                  </h6>
+                  <p
+                    class="card-text"
+                    v-if="request.quantityneeded == 'as many as possible'"
+                  >
+                    <strong>As Many Masks as Possible</strong><br />Design
+                    Preference: {{request.designpreference}}
+                  </p>
+                  <p v-else>
+                    <strong>{{request.quantityneeded}} Masks Needed</strong
+                    ><br />Design Preference: {{request.designpreference}}
+                  </p>
+                  <p class="card-text"></p>
+                  <p class="card-text">
+                    <strong>Contact</strong><br />
+                    {{request.fullname}}<br />
+                    <span v-if="request.phonenumber != 'email contact only'"
+                      >{{request.phonenumber}}<br
+                    /></span>
+                    {{request.email}}
+                  </p>
+                </div>
+              </div>
+              <div v-if="requests.length === 0">
+                Loading...
               </div>
             </div>
           </div>

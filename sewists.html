@@ -44,7 +44,6 @@
         padding-top: 24px;
         border-top: 1px solid #dee2e6;
 
-        overflow-y: auto;
       }
 
       .well {
@@ -113,7 +112,7 @@
               The following health centers and laboratories have requested
               masks.<br />
               For information about making masks go to
-              <a href="http://www.nancysews.com">www.nancysews.com</a>.
+              <a href="http://syracusemaskproject.org">Syracuse Mask Project</a>.
             </p>
           </section>
 
@@ -135,11 +134,11 @@
                     class="card-text"
                     v-if="request.quantityneeded == 'as many as possible'"
                   >
-                    <strong>As Many Masks as Possible</strong><br />Design
+                    <strong>As many masks as possible</strong><br />Design
                     Preference: {{request.designpreference}}
                   </p>
                   <p v-else>
-                    <strong>{{request.quantityneeded}} Masks Needed</strong
+                    <strong>{{request.quantityneeded}} </strong
                     ><br />Design Preference: {{request.designpreference}}
                   </p>
                   <p class="card-text"></p>
